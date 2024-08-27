@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('{{ url_for('static', filename='background.webp') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            text-align: center;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .results-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically by default */
+            align-items: center;
+            gap: 20px;
+            padding: 0 20px; /* Add padding to both sides */
+        }
+
+        @media (min-width: 768px) {
+            .results-container {
+                flex-direction: row; /* Arrange items side-by-side on larger screens */
+                justify-content: space-between; /* Align items with space between */
+                align-items: flex-start; /* Align items to the start of the container */
+                padding: 0; /* Remove padding on larger screens */
+            }
+        }
+
+        table {
+            width: 100%;
+            max-width: 500px; /* Restrict table width */
+            border-collapse: collapse;
+            table-layout: fixed; /* Ensures table columns have a fixed width */
+            margin: 0; /* Reset margin */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 0.9em; /* Slightly smaller font size */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        th:first-child, td:first-child {
+            width: 120px; /* Fixed width for 'Candidate' column */
+        }
+
+        th:last-child, td:last-child {
+            width: 80px; /* Fixed width for 'Votes' column */
+        }
+
+        img {
+            max-width: 600px; /* Set a larger maximum width for the image */
+            height: auto;
+            border-radius: 5px;
+            margin-left: 20px; /* Adjust margin for alignment */
+            margin-right: 20px; /* Adjust margin to align with table */
+            margin-top: -20px; /* Move the image slightly up */
+            padding: 10px; /* Add padding to ensure spacing within the box */
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .buttons a.btn:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .results-container {
+                flex-direction: column;
+                align-items: center; /* Center items on smaller screens */
+                padding: 0; /* Remove padding on smaller screens */
+            }
+
+            img {
+                max-width: 100%; /* Adjust image size for smaller screens */
+                margin-left: 0; /* Remove margin on smaller screens */
+                margin-right: 0; /* Remove margin on smaller screens */
+                margin-top: -10px; /* Adjust vertical positioning on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Voting Results</h1>
+        </header>
+        <main>
+            <div class="results-container">
+                <table>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Votes</th>
+                    </tr>
+                    {% for result in results %}
+                    <tr>
+                        <td>
+                            {{ result.name }}
+                            {% if result.is_highest %}
+                                <strong>(Highest)</strong>
+                            {% endif %}
+                        </td>
+                        <td>{{ result.vote_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <!-- Add the PNG image next to the table -->
+                <img src="{{ url_for('static', filename='leaderboard.png') }}" alt="Leaderboard Image">
+            </div>
+            <div class="buttons">
+                <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Recorded</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Thank You for Voting!</h1>
+        </header>
+        <main>
+            <p class="message success">Your vote has been successfully recorded.</p>
+            <div class="buttons">
+                <a href="{{ url_for('results') }}" class="btn">View Results</a>
+                <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

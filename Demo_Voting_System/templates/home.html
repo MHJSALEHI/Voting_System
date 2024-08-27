@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('{{ url_for('static', filename='background.webp') }}'); /* Path to your .webp background image */
+            background-size: cover; /* Ensures the image covers the whole background */
+            background-position: center; /* Centers the background image */
+            background-attachment: fixed; /* Keeps the background fixed when scrolling */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Adds a white background with transparency to make text readable */
+            border-radius: 10px; /* Rounds the corners of the container */
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .support-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .support-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007BFF;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Voting System</h1>
+        </header>
+        <main>
+            <p>Select an option below to proceed:</p>
+            <div class="buttons">
+                <a href="{{ url_for('register') }}" class="btn">Register</a>
+                <a href="{{ url_for('login') }}" class="btn">Login</a>
+                <a href="{{ url_for('results') }}" class="btn">View Results</a>
+                <a href="{{ url_for('admin_login') }}" class="btn">Admin Login</a>
+            </div>
+
+            <!-- Support Section -->
+            <div class="support-section">
+                <h2>Support</h2>
+                <p>If you're having trouble logging in or need further assistance, please contact us at:</p>
+                <p><strong>Email:</strong> <a href="mailto:mhjsalehi@gmail.com">mhjsalehi@gmail.com</a></p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
