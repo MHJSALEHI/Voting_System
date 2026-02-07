@@ -10,7 +10,7 @@ class User(db.Model):
 class Candidate(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    profile_picture = db.Column(db.String(200), nullable=True)  # URL to profile picture
+    profile_picture = db.Column(db.String(200), nullable=True)  
 
 class Vote(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,3 +21,4 @@ class Vote(db.Model):
     __table_args__ = (
         db.UniqueConstraint('student_id', 'candidate_id', name='_student_candidate_uc'),
     )
+
